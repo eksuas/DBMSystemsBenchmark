@@ -13,19 +13,20 @@ class Movie:
         self.title = title
         self.year = year
         self.genre = genre
-        self.director = director
+        self.directors = Set()
         self.rating = rating
         self.actors = Set()
         self.collectors = Set()
 class Actor:
     def __init__(self,ID,name):
         self.ID = ID
-        self.name=name
+        self.name=Set()
 class Director:
     def __init__(self,ID,name):
         self.ID = ID
         self.name = name
 class Collector:
-    def __init__(self,ID,name):
+    def __init__(self,ID,name,email):
         self.ID = ID
         self.name = name
+        self.email=email
