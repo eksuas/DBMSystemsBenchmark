@@ -47,7 +47,7 @@ def read_files(args):
         )
         movie.actors=Set(line[3].split(', '))
         data.movies.add(movie)
-        data.actors.update(movie.actors)
+        data.actors.union(movie.actors)
         data.directors.add(movie.director)
 
     # Assign id to actors and directors
