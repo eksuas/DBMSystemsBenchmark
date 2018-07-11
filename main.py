@@ -5,37 +5,18 @@ from sets import Set
 
 # Command line argument parser
 def arg_parser():
-
     parser = argparse.ArgumentParser()
-    parser.add_argument('--user',
-        type=str,
-        default="neo4j",
-        help='username for neo4j')
-
-    parser.add_argument('--password',
-        type=str,
-        default="777",
-        help='password of the user')
-
-    parser.add_argument('--hostname',
-        default="localhost:7474",
-        help='hostname of the server')
-
-    parser.add_argument('--films_path',
-        default="data/FILMS.txt",
-        help='the path of FILMS.txt file')
-
-    parser.add_argument('--collectors_path',
-        default="data/collectors.txt",
-        help='the path of collectors.txt file')
-
+    parser.add_argument('--user',            default="neo4j",                help='username for neo4j')
+    parser.add_argument('--password',        default="777",                  help='password of the user')
+    parser.add_argument('--hostname',        default="localhost:7474",       help='hostname of the server')
+    parser.add_argument('--films_path',      default="data/FILMS.txt",       help='the path of FILMS.txt file')
+    parser.add_argument('--collectors_path', default="data/collectors.txt",  help='the path of collectors.txt file')
     try:
         args = parser.parse_args()
     except SystemExit as e:
         print(e)
         sys.exit()
-
-    # Return user,password,path arguments to use in other functions
+        
     return args
 
 def read_files(args):
@@ -45,24 +26,17 @@ def read_files(args):
         collectors_file=open(args.collectors_path,"r")
 
     except IOError:
-         #if there is a error, do it
         print("The files are not found.")
         sys.exit()
 
-    # Create data instance
+    # Create and initialize local variables
     data = dataset.Data()
-
-    # Read files
-    films_lines=films_file.readlines()
-    collectors_lines=collectors_file.readlines()
-    director_id=3000
-    actor_id=2000
-
+    
     # Firstly, read informations in FILMS file
+    films_lines=films_file.readlines()
     for i in xrange(len(films_lines)):
         line=films_lines[i].split(' % ')
-
-        #Send movie informations to dataset and create a movie
+        # Create a new movie
         movie = dataset.Movie(
             ID=line[0],
             title=line[1],
@@ -71,43 +45,25 @@ def read_files(args):
             director=line[5],
             rating=line[6],
         )
-        movie.directors.add(line[5])
         movie.actors=Set(line[3].split(', '))
-
-        #Send informations of every director to Director class in dataset
-        for director in movie.directors:
-            director=dataset.Director(
-                ID=director_id,
-                name=director
-            )
-            director_id+=1
-            # Add director into directors set in dataset
-            data.directors.add(director)
-
-        #Send every actor to Actor class in dataset
-        for actor in movie.actors:
-            #Create actor
-            actor=dataset.Actor(
-                ID=actor_id,
-                name=actor
-            )
-            actor_id+=1
-            # Add actor into actors set in data class
-            data.actors.add(actor)
-
-        #Add movie into movies set in dataset
         data.movies.add(movie)
+        data.actors.union(movie.actors)
+        data.directors.add(movie.director)
 
-    #Read lines in collectors file
+    # Assign id to actors and directors
+    data.actors=Set([dataset.Actor(ID+2000, name) for ID, name in enumerate(data.actors]))
+    data.directors=Set([dataset.Director(ID+3000, name) for ID, name in enumerate(data.directors])])
+
+    # Read lines in collectors file
+    collectors_lines=collectors_file.readlines()
     for i in xrange(len(collectors_lines)):
         line=collectors_lines[i].split('%')
-        #Send every collector to Collector class in dataset
         collector = dataset.Collector(
             ID=line[0],
             name=line[1],
             email=line[2]
         )
-        #Add collector into collectors set in data class
+        # Add collector into collectors set in data class
         data.collectors.add(collector)
     return data
 
