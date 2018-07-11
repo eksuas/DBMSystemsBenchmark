@@ -2,7 +2,6 @@ from sets import Set
 
 class Data:
     def __init__(self):
-
         self.actors = Set()
         self.directors = Set()
         self.movies = Set()
@@ -14,7 +13,7 @@ class Movie:
         self.title = title
         self.year = year
         self.genre = genre
-        self.directors = Set()
+        self.director = director
         self.rating = rating
         self.actors = Set()
         self.collectors = Set()
