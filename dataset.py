@@ -13,7 +13,7 @@ class Movie:
         self.title = title
         self.year = year
         self.genre = genre
-        self.directors = Set()
+        self.directors = director
         self.rating = rating
         self.actors = Set()
         self.collectors = Set()
