@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
 import dataset
 import argparse
+from py2neo import authenticate, Graph,Node
 import sys
 from sets import Set
 
@@ -7,7 +9,7 @@ from sets import Set
 def arg_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--user',            default="neo4j",                help='username for neo4j')
-    parser.add_argument('--password',        default="777",                  help='password of the user')
+    parser.add_argument('--password',        default="333",                  help='password of the user')
     parser.add_argument('--hostname',        default="localhost:7474",       help='hostname of the server')
     parser.add_argument('--films_path',      default="data/FILMS.txt",       help='the path of FILMS.txt file')
     parser.add_argument('--collectors_path', default="data/collectors.txt",  help='the path of collectors.txt file')
@@ -16,7 +18,7 @@ def arg_parser():
     except SystemExit as e:
         print(e)
         sys.exit()
-        
+
     return args
 
 def read_files(args):
@@ -31,7 +33,7 @@ def read_files(args):
 
     # Create and initialize local variables
     data = dataset.Data()
-    
+
     # Firstly, read informations in FILMS file
     films_lines=films_file.readlines()
     for i in xrange(len(films_lines)):
@@ -45,14 +47,16 @@ def read_files(args):
             director=line[5],
             rating=line[6],
         )
+        # identify the actors of the movie
         movie.actors=Set(line[3].split(', '))
+        # add the movie, actors and directors to dataset
         data.movies.add(movie)
-        data.actors.union(movie.actors)
+        data.actors.update(movie.actors)
         data.directors.add(movie.director)
 
     # Assign id to actors and directors
-    data.actors=Set([dataset.Actor(ID+2000, name) for ID, name in enumerate(data.actors]))
-    data.directors=Set([dataset.Director(ID+3000, name) for ID, name in enumerate(data.directors])])
+    data.actors=Set([dataset.Actor(ID+2000, name) for ID, name in enumerate(data.actors)])
+    data.directors=Set([dataset.Director(ID+3000, name) for ID, name in enumerate(data.directors)])
 
     # Read lines in collectors file
     collectors_lines=collectors_file.readlines()
@@ -67,12 +71,48 @@ def read_files(args):
         data.collectors.add(collector)
     return data
 
+#Neo4j operations
+def neo4j(user,password,hostname,data):
+    try:
+        # Authenticate for server and connect it
+        authenticate (hostname, user, password)
+        graph=Graph()
+    # If server is not connected :
+    except Exception as e:
+        print ("Unable to reach server.")
+        sys.exit()
+    #start graph operations
+    start=graph.begin()
+    # Create node for Movies
+    for movie in data.movies:
+        movie_node=Node("Movies",
+            id=movie.ID,
+            title=movie.title,
+            released_year=movie.year,
+            rating=movie.rating,
+            genre=movie.genre)
+        #Create it
+        start.merge(movie_node)
+    # Create node for every director in data.directors
+    for director in data.directors:
+        director_node=Node("Directors",userid=director.ID, fullname=director.name)
+        start.merge(director_node)
+    # Create node for every actor in data.actors
+    for actor in data.actors:
+        actor_node=Node("Actors", userid=actor.ID, fullname=actor.name)
+        start.merge(actor_node)
+        # Create node for every collector in data.collectors
+    for collector in data.collectors:
+        collector_node = Node("Collectors",userid=collector.ID, fullname=collector.name, email=collector.email)
+        start.merge(collector_node)
+    # Create all nodes in server
+    start.commit()
+
+
 def main():
     args=arg_parser()
     data=read_files(args)
-    for a in data.directors:
-        print(a.ID)
-        print(a.name)
+    neo4j(args.user,args.password,args.hostname,data)
 
 if __name__ == '__main__':
     main()
