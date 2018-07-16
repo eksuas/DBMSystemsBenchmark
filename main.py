@@ -83,7 +83,7 @@ def neo4j(user,password,hostname,data):
         authenticate (hostname, user, password)
         graph=Graph()
     # If server is not connected :
-    except Exception as e:
+    except Exception:
         print ("Unable to reach server.")
         sys.exit()
         
