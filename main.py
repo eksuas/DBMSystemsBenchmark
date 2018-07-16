@@ -73,7 +73,10 @@ def read_files(args):
         )
         # Add collector into collectors set in data class
         data.collectors.add(collector)
-    return data
+
+    collect_lines=collect_file.readlines()
+    follow_lines=follow_file.readlines()
+    return data,collect_lines,follow_lines
 
 #Neo4j operations
 def neo4j(user,password,hostname,data):
@@ -83,13 +86,11 @@ def neo4j(user,password,hostname,data):
         authenticate (hostname, user, password)
         graph=Graph()
     # If server is not connected :
-    except Exception:
+    except Exception as e:
         print ("Unable to reach server.")
         sys.exit()
-        
     #start graph operations
     start=graph.begin()
-    
     # Create node for Movies
     for movie in data.movies:
         movie_node=Node("Movies",
@@ -98,31 +99,70 @@ def neo4j(user,password,hostname,data):
             released_year=movie.year,
             rating=movie.rating,
             genre=movie.genre)
+        #Create it
         start.merge(movie_node)
-        
     # Create node for every director in data.directors
     for director in data.directors:
         director_node=Node("Directors",userid=director.ID, fullname=director.name)
         start.merge(director_node)
-        
     # Create node for every actor in data.actors
     for actor in data.actors:
         actor_node=Node("Actors", userid=actor.ID, fullname=actor.name)
         start.merge(actor_node)
-    
-    # Create node for every collector in data.collectors
+        # Create node for every collector in data.collectors
     for collector in data.collectors:
         collector_node = Node("Collectors",userid=collector.ID, fullname=collector.name, email=collector.email)
         start.merge(collector_node)
-        
     start.commit()
-    
+    return graph
+
+# Create relationship between nodes
+def relation(data,graph,collect_lines,follow_lines):
+    start=graph.begin()
+    # Use NodeSelector to reach related node
+    selector=NodeSelector(graph)
+    for movie in data.movies:
+        # Related movie node
+        node_movie=selector.select("Movies", title=movie.title).first()
+        # Director node of this movie
+        node_director=selector.select("Directors", fullname=movie.director).first()
+        # Create DIRECTED relation between movie and director
+        director_movie=Relationship(node_director,"DIRECTED",node_movie)
+        start.create(director_movie)
+        for actor in movie.actors:
+            # Actor node of this movie
+            node_actor=selector.select("Actors", fullname=actor).first()
+            # Set DIRECTED relation between movie and actor
+            actor_movie=Relationship(node_actor,"ACTED_IN",node_movie)
+            start.create(actor_movie)
+
+    #Determine relationship in every line in collect.txt
+    for i in xrange(len(collect_lines)):
+        line=collect_lines[i].strip().split('%')
+        # Determine collector and movie nodes incording to line
+        node_collector=selector.select("Collectors", userid=line[0]).first()
+        node_movie=selector.select("Movies", mov_id=line[1]).first()
+        # Set COLLECTS relationship between movie and collector
+        collector_movie=Relationship(node_collector,"COLLECTS",node_movie)
+        start.create(collector_movie)
+    #Determine relationship in every line in follow.txt
+    for i in xrange(len(follow_lines)):
+        line=follow_lines[i].strip().split('%')
+        # Determine collector nodes
+        node_collector1=selector.select("Collectors", userid=line[0]).first()
+        node_collector2=selector.select("Collectors", userid=line[1]).first()
+        #Set FOLLOWS relationship between these collectors
+        collector1_2=Relationship(node_collector1,"FOLLOWS",node_collector2)
+        start.create(collector1_2)
+    #Create all relationships
+    start.commit()
+
 
 def main():
     args=arg_parser()
-    data=read_files(args)
-    neo4j(args.user,args.password,args.hostname,data)
-
+    data,collect_lines,follow_lines=read_files(args)
+    graph=neo4j(args.user,args.password,args.hostname,data)
+    relation(data,graph,collect_lines,follow_lines)
 
 if __name__ == '__main__':
     main()
