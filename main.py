@@ -86,8 +86,10 @@ def neo4j(user,password,hostname,data):
     except Exception as e:
         print ("Unable to reach server.")
         sys.exit()
+        
     #start graph operations
     start=graph.begin()
+    
     # Create node for Movies
     for movie in data.movies:
         movie_node=Node("Movies",
@@ -96,22 +98,25 @@ def neo4j(user,password,hostname,data):
             released_year=movie.year,
             rating=movie.rating,
             genre=movie.genre)
-        #Create it
         start.merge(movie_node)
+        
     # Create node for every director in data.directors
     for director in data.directors:
         director_node=Node("Directors",userid=director.ID, fullname=director.name)
         start.merge(director_node)
+        
     # Create node for every actor in data.actors
     for actor in data.actors:
         actor_node=Node("Actors", userid=actor.ID, fullname=actor.name)
         start.merge(actor_node)
-        # Create node for every collector in data.collectors
+    
+    # Create node for every collector in data.collectors
     for collector in data.collectors:
         collector_node = Node("Collectors",userid=collector.ID, fullname=collector.name, email=collector.email)
         start.merge(collector_node)
+        
     start.commit()
-
+    
 
 def main():
     args=arg_parser()
