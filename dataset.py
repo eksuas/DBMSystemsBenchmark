@@ -2,10 +2,13 @@ from sets import Set
 
 class Data:
     def __init__(self):
+
         self.actors = Set()
         self.directors = Set()
         self.movies = Set()
         self.collectors = Set()
+        self.followings = []
+        self.collectings = []
 
 class Movie:
     def __init__(self,ID,title,year,genre,director,rating):
