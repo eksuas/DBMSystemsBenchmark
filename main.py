@@ -118,45 +118,20 @@ def neo4j(user,password,hostname,data):
 
 # Create relationship between nodes
 def relation(data,graph,collect_lines,follow_lines):
-    start=graph.begin()
-    # Use NodeSelector to reach related node
-    selector=NodeSelector(graph)
-    for movie in data.movies:
-        # Related movie node
-        node_movie=selector.select("Movies", title=movie.title).first()
-        # Director node of this movie
-        node_director=selector.select("Directors", fullname=movie.director).first()
-        # Create DIRECTED relation between movie and director
-        director_movie=Relationship(node_director,"DIRECTED",node_movie)
-        start.create(director_movie)
-        for actor in movie.actors:
-            # Actor node of this movie
-            node_actor=selector.select("Actors", fullname=actor).first()
-            # Set DIRECTED relation between movie and actor
-            actor_movie=Relationship(node_actor,"ACTED_IN",node_movie)
-            start.create(actor_movie)
 
-    #Determine relationship in every line in collect.txt
+    for movie in data.movies:
+        graph.run("MATCH (m:Movies),(d:Directors) WHERE m.title ={title} AND d.fullname ={director_name} CREATE (d)-[:DIRECTED]->(m)", title=movie.title,director_name=movie.director)
+        for actor in movie.actors:
+            graph.run("MATCH (m:Movies),(a:Actors) WHERE m.title ={title} AND a.fullname ={actor_name} CREATE (a)-[:ACTED_IN]->(m)", title=movie.title,actor_name=actor)
+
     for i in xrange(len(collect_lines)):
         line=collect_lines[i].strip().split('%')
-        # Determine collector and movie nodes incording to line
-        node_collector=selector.select("Collectors", userid=line[0]).first()
-        node_movie=selector.select("Movies", mov_id=line[1]).first()
-        # Set COLLECTS relationship between movie and collector
-        collector_movie=Relationship(node_collector,"COLLECTS",node_movie)
-        start.create(collector_movie)
-    #Determine relationship in every line in follow.txt
-    for i in xrange(len(follow_lines)):
-        line=follow_lines[i].strip().split('%')
-        # Determine collector nodes
-        node_collector1=selector.select("Collectors", userid=line[0]).first()
-        node_collector2=selector.select("Collectors", userid=line[1]).first()
-        #Set FOLLOWS relationship between these collectors
-        collector1_2=Relationship(node_collector1,"FOLLOWS",node_collector2)
-        start.create(collector1_2)
-    #Create all relationships
-    start.commit()
+        graph.run("MATCH (c:Collectors),(m:Movies) WHERE c.userid ={id} AND m.mov_id ={id2} CREATE (c)-[:COLLECTS]->(m)", id=line[0],id2=line[1])
 
+    for i in xrange(len(follow_lines)):
+        print i
+        line=follow_lines[i].strip().split('%')
+        graph.run("MATCH (c:Collectors),(c2:Collectors) WHERE c.userid ={id} AND c2.userid ={id2} CREATE (c)-[:FOLLOWS]->(c2)", id=line[0],id2=line[1])
 
 def main():
     args=arg_parser()
