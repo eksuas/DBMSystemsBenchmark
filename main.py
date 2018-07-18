@@ -77,20 +77,19 @@ def read_files(args):
         data.collectors.add(collector)
 
     collect_lines=collect_file.readlines()
-    follow_lines=follow_file.readlines()
     for i in xrange(len(collect_lines)):
         line=collect_lines[i].strip().split('%')
-        # Create dictionary to use in COLLECTS relation
         data.collectings.append((line[0], line[1]))
-        # data.collectings.append(collecting)
+        
+    follow_lines=follow_file.readlines()   
     for i in xrange(len(follow_lines)):
         line=follow_lines[i].strip().split('%')
         data.followings.append((line[0],line[1]))
     return data
 
+
 #Neo4j operations
 def neo4j(user,password,hostname,data):
-
     try:
         # Authenticate for server and connect it
         authenticate (hostname, user, password)
@@ -99,8 +98,10 @@ def neo4j(user,password,hostname,data):
     except Exception:
         print ("Unable to reach server.")
         sys.exit()
+        
     #start graph operations
     start=graph.begin()
+    
     # Create node for Movies
     for movie in data.movies:
         movie_node=Node("Movies",
@@ -109,27 +110,32 @@ def neo4j(user,password,hostname,data):
             released_year=movie.year,
             rating=movie.rating,
             genre=movie.genre)
-        #Create it
         start.merge(movie_node)
+        
     # Create node for every director in data.directors
     for director in data.directors:
         director_node=Node("Directors",userid=director.ID, fullname=director.name)
         start.merge(director_node)
+        
     # Create node for every actor in data.actors
     for actor in data.actors:
         actor_node=Node("Actors", userid=actor.ID, fullname=actor.name)
         start.merge(actor_node)
+        
     # Create node for every collector in data.collectors
     for collector in data.collectors:
         collector_node = Node("Collectors",userid=collector.ID, fullname=collector.name, email=collector.email)
         start.merge(collector_node)
+        
     start.commit()
     return graph
+
 
 # Create relationship between nodes
 def relation(data,graph):
     #Learn time difference for relation func
     now = datetime.datetime.now()
+    
     #Related querires
     acted_in = """MATCH (m:Movies),(a:Actors)
                 WHERE m.title ={title} AND a.fullname ={actor_name}
@@ -143,17 +149,22 @@ def relation(data,graph):
     follows = """MATCH (c:Collectors),(c2:Collectors)
                 WHERE c.userid ={id} AND c2.userid ={id2}
                 CREATE (c)-[:FOLLOWS]->(c2)"""
+    
     for movie in data.movies:
         graph.run(directed, title=movie.title,director_name=movie.director)
         for actor in movie.actors:
             graph.run(acted_in, title=movie.title,actor_name=actor)
+            
     for collector, movie in data.collectings:
         graph.run(collects, id=collector,id2=movie)
+        
     for collector1,collector2 in data.followings:
         graph.run(follows, id=collector1,id2=collector2)
+        
     end = datetime.datetime.now()
     print (end-now)
 
+    
 def main():
     args=arg_parser()
     data=read_files(args)
