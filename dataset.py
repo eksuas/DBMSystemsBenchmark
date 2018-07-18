@@ -6,6 +6,8 @@ class Data:
         self.directors = Set()
         self.movies = Set()
         self.collectors = Set()
+        self.followings = []
+        self.collectings = []
 
 class Movie:
     def __init__(self,ID,title,year,genre,director,rating):

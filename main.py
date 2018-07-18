@@ -4,6 +4,8 @@ import argparse
 from py2neo import authenticate, Graph,Node,Relationship,NodeSelector
 import sys
 from sets import Set
+import datetime
+import time
 
 # Command line argument parser
 def arg_parser():
@@ -73,11 +75,21 @@ def read_files(args):
         )
         # Add collector into collectors set in data class
         data.collectors.add(collector)
+
+    collect_lines=collect_file.readlines()
+    for i in xrange(len(collect_lines)):
+        line=collect_lines[i].strip().split('%')
+        data.collectings.append((line[0], line[1]))
+        
+    follow_lines=follow_file.readlines()   
+    for i in xrange(len(follow_lines)):
+        line=follow_lines[i].strip().split('%')
+        data.followings.append((line[0],line[1]))
     return data
+
 
 #Neo4j operations
 def neo4j(user,password,hostname,data):
-
     try:
         # Authenticate for server and connect it
         authenticate (hostname, user, password)
@@ -109,20 +121,55 @@ def neo4j(user,password,hostname,data):
     for actor in data.actors:
         actor_node=Node("Actors", userid=actor.ID, fullname=actor.name)
         start.merge(actor_node)
-    
+        
     # Create node for every collector in data.collectors
     for collector in data.collectors:
         collector_node = Node("Collectors",userid=collector.ID, fullname=collector.name, email=collector.email)
         start.merge(collector_node)
         
     start.commit()
-    
+    return graph
 
+
+# Create relationship between nodes
+def relation(data,graph):
+    #Learn time difference for relation func
+    now = datetime.datetime.now()
+    
+    #Related querires
+    acted_in = """MATCH (m:Movies),(a:Actors)
+                WHERE m.title ={title} AND a.fullname ={actor_name}
+                CREATE (a)-[:ACTED_IN]->(m)"""
+    directed = """MATCH (m:Movies),(d:Directors)
+                WHERE m.title ={title} AND d.fullname ={director_name}
+                CREATE (d)-[:DIRECTED]->(m)"""
+    collects = """MATCH (c:Collectors),(m:Movies)
+                WHERE c.userid ={id} AND m.mov_id ={id2}
+                CREATE (c)-[:COLLECTS]->(m)"""
+    follows = """MATCH (c:Collectors),(c2:Collectors)
+                WHERE c.userid ={id} AND c2.userid ={id2}
+                CREATE (c)-[:FOLLOWS]->(c2)"""
+    
+    for movie in data.movies:
+        graph.run(directed, title=movie.title,director_name=movie.director)
+        for actor in movie.actors:
+            graph.run(acted_in, title=movie.title,actor_name=actor)
+            
+    for collector, movie in data.collectings:
+        graph.run(collects, id=collector,id2=movie)
+        
+    for collector1,collector2 in data.followings:
+        graph.run(follows, id=collector1,id2=collector2)
+        
+    end = datetime.datetime.now()
+    print (end-now)
+
+    
 def main():
     args=arg_parser()
     data=read_files(args)
-    neo4j(args.user,args.password,args.hostname,data)
-
+    graph=neo4j(args.user,args.password,args.hostname,data)
+    relation(data,graph)
 
 if __name__ == '__main__':
     main()
