@@ -87,7 +87,6 @@ def read_files(args):
         data.followings.append((line[0],line[1]))
     return data
 
-
 #Neo4j operations
 def neo4j(user,password,hostname,data):
     try:
@@ -131,7 +130,6 @@ def neo4j(user,password,hostname,data):
 
     relation(data,graph)
     queries(data,graph)
-
 
 # Create relationship between nodes
 def relation(data,graph):
@@ -193,7 +191,6 @@ def queries(data,graph):
                 RETURN DISTINCT c2.fullname,c2.userid""").data()
 
     print a,b,c,d,e,f
-
 
 def main():
     args=arg_parser()
