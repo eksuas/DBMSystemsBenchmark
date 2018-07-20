@@ -166,32 +166,31 @@ def relation(data,graph):
     return graph,data
 
 def queries(data,graph):
-    a = graph.run("""MATCH (a:Actors),(d:Directors)
+    print graph.run("""MATCH (a:Actors),(d:Directors)
                   WHERE a.fullname = d.fullname RETURN a""").data()
 
-    b = graph.run("""MATCH (a:Actors)-[:ACTED_IN]->(m:Movies)
+    print graph.run("""MATCH (a:Actors)-[:ACTED_IN]->(m:Movies)
                    WITH a,count(m) as rels
                    WHERE rels >=5
                    RETURN a""").data()
 
-    c=graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
+    print graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
                 WITH m
                 MATCH (m)<-[:ACTED_IN]-(c:Actors)
                 RETURN count(c)-1""").data()
 
-    d=graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
+    print graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
                 WITH m
                 MATCH (m)<-[:COLLECTS]-(c:Collectors)
                 RETURN c""").data()
 
-    e=graph.run("""MATCH (c:Collectors)-[:COLLECTS]->(m:Movies {title: "The Shawshank Redemption"})
+    print graph.run("""MATCH (c:Collectors)-[:COLLECTS]->(m:Movies {title: "The Shawshank Redemption"})
                 RETURN c LIMIT 10""").data()
 
-    f=graph.run("""MATCH (c1:Collectors { userid: '1001' })-[:FOLLOWS*1..3]-(c2:Collectors)
+    print graph.run("""MATCH (c1:Collectors { userid: '1001' })-[:FOLLOWS*1..3]-(c2:Collectors)
                 RETURN DISTINCT c2.fullname,c2.userid""").data()
 
-    print a,b,c,d,e,f
-
+    
 def main():
     args=arg_parser()
     data=read_files(args)
