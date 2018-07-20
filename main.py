@@ -80,13 +80,12 @@ def read_files(args):
     for i in xrange(len(collect_lines)):
         line=collect_lines[i].strip().split('%')
         data.collectings.append((line[0], line[1]))
-        
-    follow_lines=follow_file.readlines()   
+
+    follow_lines=follow_file.readlines()
     for i in xrange(len(follow_lines)):
         line=follow_lines[i].strip().split('%')
         data.followings.append((line[0],line[1]))
     return data
-
 
 #Neo4j operations
 def neo4j(user,password,hostname,data):
@@ -98,10 +97,10 @@ def neo4j(user,password,hostname,data):
     except Exception:
         print ("Unable to reach server.")
         sys.exit()
-        
+
     #start graph operations
     start=graph.begin()
-    
+
     # Create node for Movies
     for movie in data.movies:
         movie_node=Node("Movies",
@@ -111,31 +110,32 @@ def neo4j(user,password,hostname,data):
             rating=movie.rating,
             genre=movie.genre)
         start.merge(movie_node)
-        
+
     # Create node for every director in data.directors
     for director in data.directors:
         director_node=Node("Directors",userid=director.ID, fullname=director.name)
         start.merge(director_node)
-        
+
     # Create node for every actor in data.actors
     for actor in data.actors:
         actor_node=Node("Actors", userid=actor.ID, fullname=actor.name)
         start.merge(actor_node)
-        
+
     # Create node for every collector in data.collectors
     for collector in data.collectors:
         collector_node = Node("Collectors",userid=collector.ID, fullname=collector.name, email=collector.email)
         start.merge(collector_node)
-        
-    start.commit()
-    return graph
 
+    start.commit()
+
+    relation(data,graph)
+    queries(data,graph)
 
 # Create relationship between nodes
 def relation(data,graph):
     #Learn time difference for relation func
     now = datetime.datetime.now()
-    
+
     #Related querires
     acted_in = """MATCH (m:Movies),(a:Actors)
                 WHERE m.title ={title} AND a.fullname ={actor_name}
@@ -149,27 +149,52 @@ def relation(data,graph):
     follows = """MATCH (c:Collectors),(c2:Collectors)
                 WHERE c.userid ={id} AND c2.userid ={id2}
                 CREATE (c)-[:FOLLOWS]->(c2)"""
-    
+
     for movie in data.movies:
         graph.run(directed, title=movie.title,director_name=movie.director)
         for actor in movie.actors:
             graph.run(acted_in, title=movie.title,actor_name=actor)
-            
+
     for collector, movie in data.collectings:
         graph.run(collects, id=collector,id2=movie)
-        
+
     for collector1,collector2 in data.followings:
         graph.run(follows, id=collector1,id2=collector2)
-        
+
     end = datetime.datetime.now()
     print (end-now)
+    return graph,data
+
+def queries(data,graph):
+    print graph.run("""MATCH (a:Actors),(d:Directors)
+                  WHERE a.fullname = d.fullname RETURN a""").data()
+
+    print graph.run("""MATCH (a:Actors)-[:ACTED_IN]->(m:Movies)
+                   WITH a,count(m) as rels
+                   WHERE rels >=5
+                   RETURN a""").data()
+
+    print graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
+                WITH m
+                MATCH (m)<-[:ACTED_IN]-(c:Actors)
+                RETURN count(c)-1""").data()
+
+    print graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
+                WITH m
+                MATCH (m)<-[:COLLECTS]-(c:Collectors)
+                RETURN c""").data()
+
+    print graph.run("""MATCH (c:Collectors)-[:COLLECTS]->(m:Movies {title: "The Shawshank Redemption"})
+                RETURN c LIMIT 10""").data()
+
+    print graph.run("""MATCH (c1:Collectors { userid: '1001' })-[:FOLLOWS*1..3]-(c2:Collectors)
+                RETURN DISTINCT c2.fullname,c2.userid""").data()
 
     
 def main():
     args=arg_parser()
     data=read_files(args)
-    graph=neo4j(args.user,args.password,args.hostname,data)
-    relation(data,graph)
+    neo4j(args.user,args.password,args.hostname,data)
 
 if __name__ == '__main__':
     main()
