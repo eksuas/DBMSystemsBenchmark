@@ -1,264 +1,273 @@
-{u'a.fullname': u'Woody Allen', u'a.userid': 2384}
-{u'a.fullname': u'Clint Eastwood', u'a.userid': 2184}
-{u'a.fullname': u'Orson Welles', u'a.userid': 2131}
-{u'a.fullname': u'Steve McQueen', u'a.userid': 2762}
-{u'a.fullname': u'Charles Chaplin', u'a.userid': 2745}
-{u'a.fullname': u'Aamir Khan', u'a.userid': 2520}
-{u'a.fullname': u'Charles Laughton', u'a.userid': 2310}
-{u'a.fullname': u'Roberto Benigni', u'a.userid': 2711}
-{u'a.fullname': u'Richard Attenborough', u'a.userid': 2038}
-{u'a.fullname': u'John Huston', u'a.userid': 2062}
-{u'a.fullname': u'Terry Gilliam', u'a.userid': 2471}
+1. List all actors ( userid and fullname ) who are also directors
+Userid                          Fullname 
+Richard Attenborough          2039                          
+John Huston                   2063                          
+Orson Welles                  2132                          
+Clint Eastwood                2185                          
+Charles Laughton              2311                          
+Woody Allen                   2385                          
+Terry Gilliam                 2472                          
+Aamir Khan                    2521                          
+Roberto Benigni               2712                          
+Charles Chaplin               2746                          
+Steve McQueen                 2763                          
 
 
-{u'a.fullname': u'Clint Eastwood', u'a.userid': 2184}
-{u'a.fullname': u'Leonardo DiCaprio', u'a.userid': 2660}
-{u'a.fullname': u'Robert De Niro', u'a.userid': 2753}
-{u'a.fullname': u'Tom Hanks', u'a.userid': 2178}
+2. List all actors ( userid and fullname ) who acted in 5 or more movies.
+Userid                          Fullname 
+Tom Hanks                     2179                          
+Clint Eastwood                2185                          
+Leonardo DiCaprio             2661                          
+Robert De Niro                2754                          
 
 
-{u'count(c)-1': 7}
+3. How many actors have acted in same movies with ’Edward Norton’?
+7                             
 
 
-{u'c': (abc46e7:Collectors {email:"roberta.tingle6@yandex.com",fullname:"Roberta Tingle",userid:"1009"})}
-{u'c': (d43d70d:Collectors {email:"mark.day42@gmail.com",fullname:"Mark Day",userid:"1027"})}
-{u'c': (d30c721:Collectors {email:"grace.ousley23@gmail.com",fullname:"Grace Ousley",userid:"1097"})}
-{u'c': (a9394de:Collectors {email:"gary.bishop10@gmail.com",fullname:"Gary Bishop",userid:"1178"})}
-{u'c': (b6eeff0:Collectors {email:"maureen.mount29@hotmail.com",fullname:"Maureen Mount",userid:"1123"})}
-{u'c': (d5482ca:Collectors {email:"susy.mcelreavy84@gmail.com",fullname:"Susy Mcelreavy",userid:"1008"})}
-{u'c': (a0279d6:Collectors {email:"christopher.johnson55@gmail.com",fullname:"Christopher Johnson",userid:"1001"})}
-{u'c': (d30c721:Collectors {email:"grace.ousley23@gmail.com",fullname:"Grace Ousley",userid:"1097"})}
-{u'c': (a9394de:Collectors {email:"gary.bishop10@gmail.com",fullname:"Gary Bishop",userid:"1178"})}
+4. Which collectors collected all movies in which ’Edward Norton’ acts?
+Userid                          Fullname 
+1001                          Christopher Johnson           
+1008                          Susy Mcelreavy                
+1009                          Roberta Tingle                
+1027                          Mark Day                      
+1097                          Grace Ousley                  
+1123                          Maureen Mount                 
+1178                          Gary Bishop                   
 
 
-{u'c.userid': u'1102', u'c.fullname': u'Mary Morales'}
-{u'c.userid': u'1049', u'c.fullname': u'Angela Nakano'}
-{u'c.userid': u'1201', u'c.fullname': u'Cornelia Harris'}
-{u'c.userid': u'1051', u'c.fullname': u'James Mccabe'}
-{u'c.userid': u'1189', u'c.fullname': u'Thelma Looney'}
-{u'c.userid': u'1176', u'c.fullname': u'Shelia Lunsford'}
-{u'c.userid': u'1153', u'c.fullname': u'Velma Thayer'}
-{u'c.userid': u'1072', u'c.fullname': u'Alfonso Lieder'}
-{u'c.userid': u'1075', u'c.fullname': u'Linda Hightower'}
-{u'c.userid': u'1210', u'c.fullname': u'Kathryn Mcintosh'}
+5. List 10 collectors ( userid and fullname ) who collect ’The Shawshank Redemption’.
+Userid                          Fullname 
+1049                          Angela Nakano                 
+1051                          James Mccabe                  
+1072                          Alfonso Lieder                
+1075                          Linda Hightower               
+1102                          Mary Morales                  
+1153                          Velma Thayer                  
+1176                          Shelia Lunsford               
+1189                          Thelma Looney                 
+1201                          Cornelia Harris               
+1210                          Kathryn Mcintosh              
 
 
-{u'c2.userid': u'1102', u'c2.fullname': u'Mary Morales'}
-{u'c2.userid': u'1106', u'c2.fullname': u'Robert Butler'}
-{u'c2.userid': u'1242', u'c2.fullname': u'Jaime Youree'}
-{u'c2.userid': u'1189', u'c2.fullname': u'Thelma Looney'}
-{u'c2.userid': u'1140', u'c2.fullname': u'John Hurst'}
-{u'c2.userid': u'1058', u'c2.fullname': u'Lorena Yates'}
-{u'c2.userid': u'1248', u'c2.fullname': u'Ronald Simpson'}
-{u'c2.userid': u'1055', u'c2.fullname': u'Robert Corner'}
-{u'c2.userid': u'1089', u'c2.fullname': u'Fannie Mccasland'}
-{u'c2.userid': u'1086', u'c2.fullname': u'Christopher Zachery'}
-{u'c2.userid': u'1081', u'c2.fullname': u'Eric Sandler'}
-{u'c2.userid': u'1167', u'c2.fullname': u'Harvey Fulton'}
-{u'c2.userid': u'1026', u'c2.fullname': u'John Bales'}
-{u'c2.userid': u'1208', u'c2.fullname': u'Jerrold Burlin'}
-{u'c2.userid': u'1139', u'c2.fullname': u'Molly Alexander'}
-{u'c2.userid': u'1186', u'c2.fullname': u'Katherine Rue'}
-{u'c2.userid': u'1131', u'c2.fullname': u'Audrey Depasquale'}
-{u'c2.userid': u'1033', u'c2.fullname': u'David Jacobsen'}
-{u'c2.userid': u'1215', u'c2.fullname': u'Charles Sherman'}
-{u'c2.userid': u'1098', u'c2.fullname': u'Ronald Ibarra'}
-{u'c2.userid': u'1087', u'c2.fullname': u'Stephen Bustamante'}
-{u'c2.userid': u'1083', u'c2.fullname': u'Rose Harrington'}
-{u'c2.userid': u'1047', u'c2.fullname': u'Ruthann Ringer'}
-{u'c2.userid': u'1159', u'c2.fullname': u'Helen Ratzlaff'}
-{u'c2.userid': u'1202', u'c2.fullname': u'Carma Polizio'}
-{u'c2.userid': u'1219', u'c2.fullname': u'Victoria Beard'}
-{u'c2.userid': u'1211', u'c2.fullname': u'Richard Cunningham'}
-{u'c2.userid': u'1064', u'c2.fullname': u'Kieth Whitcomb'}
-{u'c2.userid': u'1084', u'c2.fullname': u'Kandy Epps'}
-{u'c2.userid': u'1036', u'c2.fullname': u'Ray Pressnell'}
-{u'c2.userid': u'1021', u'c2.fullname': u'Bruce Ray'}
-{u'c2.userid': u'1137', u'c2.fullname': u'Maude Medley'}
-{u'c2.userid': u'1162', u'c2.fullname': u'Keith Blackburn'}
-{u'c2.userid': u'1030', u'c2.fullname': u'John Wells'}
-{u'c2.userid': u'1067', u'c2.fullname': u'Giuseppe Willoughby'}
-{u'c2.userid': u'1177', u'c2.fullname': u'Jacob Cunningham'}
-{u'c2.userid': u'1241', u'c2.fullname': u'David Mcghee'}
-{u'c2.userid': u'1120', u'c2.fullname': u'Patrick Maione'}
-{u'c2.userid': u'1015', u'c2.fullname': u'Elizabeth Andrada'}
-{u'c2.userid': u'1069', u'c2.fullname': u'Brian Silva'}
-{u'c2.userid': u'1104', u'c2.fullname': u'Jessica Swaim'}
-{u'c2.userid': u'1212', u'c2.fullname': u'Wanda Jones'}
-{u'c2.userid': u'1165', u'c2.fullname': u'Pablo Ross'}
-{u'c2.userid': u'1111', u'c2.fullname': u'Dolores Doan'}
-{u'c2.userid': u'1096', u'c2.fullname': u'Janet Barnes'}
-{u'c2.userid': u'1032', u'c2.fullname': u'Karen Chase'}
-{u'c2.userid': u'1149', u'c2.fullname': u'Robert Ray'}
-{u'c2.userid': u'1065', u'c2.fullname': u'William Havens'}
-{u'c2.userid': u'1155', u'c2.fullname': u'Brian Zeringue'}
-{u'c2.userid': u'1029', u'c2.fullname': u'Virginia Pawloski'}
-{u'c2.userid': u'1182', u'c2.fullname': u'Beatrice Davis'}
-{u'c2.userid': u'1173', u'c2.fullname': u'Vernell Bailey'}
-{u'c2.userid': u'1221', u'c2.fullname': u'Kenneth Robinson'}
-{u'c2.userid': u'1164', u'c2.fullname': u'Katherine Troilo'}
-{u'c2.userid': u'1232', u'c2.fullname': u'Sallie Ely'}
-{u'c2.userid': u'1000', u'c2.fullname': u'Jesse Rostad'}
-{u'c2.userid': u'1157', u'c2.fullname': u'Joshua Britcher'}
-{u'c2.userid': u'1046', u'c2.fullname': u'George Stubbs'}
-{u'c2.userid': u'1110', u'c2.fullname': u'Sammie Anderson'}
-{u'c2.userid': u'1044', u'c2.fullname': u'Eric Williams'}
-{u'c2.userid': u'1079', u'c2.fullname': u'Richard Werner'}
-{u'c2.userid': u'1072', u'c2.fullname': u'Alfonso Lieder'}
-{u'c2.userid': u'1127', u'c2.fullname': u'Sharon Hoover'}
-{u'c2.userid': u'1097', u'c2.fullname': u'Grace Ousley'}
-{u'c2.userid': u'1010', u'c2.fullname': u'Larry Gabrelcik'}
-{u'c2.userid': u'1002', u'c2.fullname': u'Julia Wheeless'}
-{u'c2.userid': u'1229', u'c2.fullname': u'Charles Bean'}
-{u'c2.userid': u'1052', u'c2.fullname': u'Ida Buchanan'}
-{u'c2.userid': u'1180', u'c2.fullname': u'Mae Rios'}
-{u'c2.userid': u'1109', u'c2.fullname': u'Toni Messano'}
-{u'c2.userid': u'1092', u'c2.fullname': u'Jody Parker'}
-{u'c2.userid': u'1171', u'c2.fullname': u'Whitney Seibert'}
-{u'c2.userid': u'1121', u'c2.fullname': u'Eric Meier'}
-{u'c2.userid': u'1146', u'c2.fullname': u'Andrea Nasser'}
-{u'c2.userid': u'1037', u'c2.fullname': u'Dennis Michael'}
-{u'c2.userid': u'1145', u'c2.fullname': u'Donna Dover'}
-{u'c2.userid': u'1117', u'c2.fullname': u'Marco Todd'}
-{u'c2.userid': u'1192', u'c2.fullname': u'Maryann Lange'}
-{u'c2.userid': u'1134', u'c2.fullname': u'Myrtle Ebert'}
-{u'c2.userid': u'1168', u'c2.fullname': u'Charles Kee'}
-{u'c2.userid': u'1013', u'c2.fullname': u'Hattie Jones'}
-{u'c2.userid': u'1231', u'c2.fullname': u'Ramona Bell'}
-{u'c2.userid': u'1071', u'c2.fullname': u'Louise Vanduyne'}
-{u'c2.userid': u'1005', u'c2.fullname': u'Anthony Mowery'}
-{u'c2.userid': u'1210', u'c2.fullname': u'Kathryn Mcintosh'}
-{u'c2.userid': u'1035', u'c2.fullname': u'Ryan Castillo'}
-{u'c2.userid': u'1204', u'c2.fullname': u'Shawn Tucker'}
-{u'c2.userid': u'1170', u'c2.fullname': u'Lawrence Puckett'}
-{u'c2.userid': u'1194', u'c2.fullname': u'Lavone Toledo'}
-{u'c2.userid': u'1230', u'c2.fullname': u'Samuel Miya'}
-{u'c2.userid': u'1090', u'c2.fullname': u'Margarita Fluitt'}
-{u'c2.userid': u'1018', u'c2.fullname': u'Agustina Grace'}
-{u'c2.userid': u'1237', u'c2.fullname': u'Antonio Hernandez'}
-{u'c2.userid': u'1236', u'c2.fullname': u'Bruce Tullio'}
-{u'c2.userid': u'1004', u'c2.fullname': u'Anthony Story'}
-{u'c2.userid': u'1150', u'c2.fullname': u'Barbara Dominguez'}
-{u'c2.userid': u'1059', u'c2.fullname': u'Natalie Robinson'}
-{u'c2.userid': u'1039', u'c2.fullname': u'Laura Sellers'}
-{u'c2.userid': u'1017', u'c2.fullname': u'Phillip Lied'}
-{u'c2.userid': u'1114', u'c2.fullname': u'Grace Quiros'}
-{u'c2.userid': u'1050', u'c2.fullname': u'Elvin Ross'}
-{u'c2.userid': u'1132', u'c2.fullname': u'Barbara Moore'}
-{u'c2.userid': u'1249', u'c2.fullname': u'Emanuel Duenas'}
-{u'c2.userid': u'1007', u'c2.fullname': u'Margaret Toan'}
-{u'c2.userid': u'1008', u'c2.fullname': u'Susy Mcelreavy'}
-{u'c2.userid': u'1009', u'c2.fullname': u'Roberta Tingle'}
-{u'c2.userid': u'1195', u'c2.fullname': u'Carol Perez'}
-{u'c2.userid': u'1218', u'c2.fullname': u'Kathleen Light'}
-{u'c2.userid': u'1223', u'c2.fullname': u'Mary Reichman'}
-{u'c2.userid': u'1076', u'c2.fullname': u'William Jones'}
-{u'c2.userid': u'1129', u'c2.fullname': u'Nellie Banister'}
-{u'c2.userid': u'1113', u'c2.fullname': u'Jeremy Perry'}
-{u'c2.userid': u'1141', u'c2.fullname': u'Calvin Raines'}
-{u'c2.userid': u'1198', u'c2.fullname': u'Catherine Bass'}
-{u'c2.userid': u'1176', u'c2.fullname': u'Shelia Lunsford'}
-{u'c2.userid': u'1191', u'c2.fullname': u'Derrick Williams'}
-{u'c2.userid': u'1234', u'c2.fullname': u'Morgan Jones'}
-{u'c2.userid': u'1068', u'c2.fullname': u'Tammy Sheppard'}
-{u'c2.userid': u'1119', u'c2.fullname': u'Larry Ramsey'}
-{u'c2.userid': u'1207', u'c2.fullname': u'Patrick Nickl'}
-{u'c2.userid': u'1233', u'c2.fullname': u'Michael Lurry'}
-{u'c2.userid': u'1161', u'c2.fullname': u'Lorenzo Peterson'}
-{u'c2.userid': u'1094', u'c2.fullname': u'Mary Philbert'}
-{u'c2.userid': u'1048', u'c2.fullname': u'Evan Stickler'}
-{u'c2.userid': u'1027', u'c2.fullname': u'Mark Day'}
-{u'c2.userid': u'1158', u'c2.fullname': u'Elwood Seidell'}
-{u'c2.userid': u'1112', u'c2.fullname': u'Julia Hedrick'}
-{u'c2.userid': u'1128', u'c2.fullname': u'Cynthia Vincent'}
-{u'c2.userid': u'1031', u'c2.fullname': u'Jody Stultz'}
-{u'c2.userid': u'1041', u'c2.fullname': u'Donald Bice'}
-{u'c2.userid': u'1085', u'c2.fullname': u'Willie Mims'}
-{u'c2.userid': u'1073', u'c2.fullname': u'Quinton Ray'}
-{u'c2.userid': u'1012', u'c2.fullname': u'Mark Haywood'}
-{u'c2.userid': u'1206', u'c2.fullname': u'Jerome Heimann'}
-{u'c2.userid': u'1066', u'c2.fullname': u'Courtney Darrow'}
-{u'c2.userid': u'1225', u'c2.fullname': u'Darrell Martell'}
-{u'c2.userid': u'1203', u'c2.fullname': u'Carol Machesky'}
-{u'c2.userid': u'1148', u'c2.fullname': u'Howard Lambert'}
-{u'c2.userid': u'1082', u'c2.fullname': u'Cory Casillas'}
-{u'c2.userid': u'1053', u'c2.fullname': u'Earl Baer'}
-{u'c2.userid': u'1093', u'c2.fullname': u'Jean Durtsche'}
-{u'c2.userid': u'1144', u'c2.fullname': u'Steven Turner'}
-{u'c2.userid': u'1125', u'c2.fullname': u'John Walter'}
-{u'c2.userid': u'1188', u'c2.fullname': u'Jeffery Boling'}
-{u'c2.userid': u'1184', u'c2.fullname': u'Josephina Miller'}
-{u'c2.userid': u'1100', u'c2.fullname': u'Mark Leach'}
-{u'c2.userid': u'1178', u'c2.fullname': u'Gary Bishop'}
-{u'c2.userid': u'1163', u'c2.fullname': u'Paul Moss'}
-{u'c2.userid': u'1181', u'c2.fullname': u'Rebecca Vogt'}
-{u'c2.userid': u'1115', u'c2.fullname': u'Jonathan Chernoff'}
-{u'c2.userid': u'1020', u'c2.fullname': u'Elvira Leach'}
-{u'c2.userid': u'1074', u'c2.fullname': u'Margie Sutton'}
-{u'c2.userid': u'1156', u'c2.fullname': u'Matthew Brockman'}
-{u'c2.userid': u'1060', u'c2.fullname': u'William Shea'}
-{u'c2.userid': u'1105', u'c2.fullname': u'Leo Pinson'}
-{u'c2.userid': u'1014', u'c2.fullname': u'Jay Kellett'}
-{u'c2.userid': u'1123', u'c2.fullname': u'Maureen Mount'}
-{u'c2.userid': u'1003', u'c2.fullname': u'Carl Witt'}
-{u'c2.userid': u'1016', u'c2.fullname': u'Willie King'}
-{u'c2.userid': u'1056', u'c2.fullname': u'Michele Boudreaux'}
-{u'c2.userid': u'1238', u'c2.fullname': u'Albert Simpson'}
-{u'c2.userid': u'1228', u'c2.fullname': u'Cora Manuel'}
-{u'c2.userid': u'1088', u'c2.fullname': u'Phuong Dykes'}
-{u'c2.userid': u'1136', u'c2.fullname': u'Hugh Allen'}
-{u'c2.userid': u'1075', u'c2.fullname': u'Linda Hightower'}
-{u'c2.userid': u'1151', u'c2.fullname': u'Duane Hammond'}
-{u'c2.userid': u'1025', u'c2.fullname': u'Charles Warren'}
-{u'c2.userid': u'1061', u'c2.fullname': u'Ernestine Malinoski'}
-{u'c2.userid': u'1023', u'c2.fullname': u'Danilo Decinti'}
-{u'c2.userid': u'1107', u'c2.fullname': u'Michael Mayoras'}
-{u'c2.userid': u'1147', u'c2.fullname': u'William Adams'}
-{u'c2.userid': u'1122', u'c2.fullname': u'Charles Wright'}
-{u'c2.userid': u'1116', u'c2.fullname': u'Helen Drake'}
-{u'c2.userid': u'1024', u'c2.fullname': u'Brian Salinas'}
-{u'c2.userid': u'1209', u'c2.fullname': u'Todd Beck'}
-{u'c2.userid': u'1042', u'c2.fullname': u'Marjorie Caicedo'}
-{u'c2.userid': u'1078', u'c2.fullname': u'Jane Smith'}
-{u'c2.userid': u'1040', u'c2.fullname': u'Margaret Rogers'}
-{u'c2.userid': u'1196', u'c2.fullname': u'Joe Waite'}
-{u'c2.userid': u'1226', u'c2.fullname': u'Robert Pizzo'}
-{u'c2.userid': u'1179', u'c2.fullname': u'Mary Wood'}
-{u'c2.userid': u'1152', u'c2.fullname': u'Daniel Zajac'}
-{u'c2.userid': u'1011', u'c2.fullname': u'Dorothy Griffin'}
-{u'c2.userid': u'1142', u'c2.fullname': u'Mary Jones'}
-{u'c2.userid': u'1124', u'c2.fullname': u'Curtis Edmond'}
-{u'c2.userid': u'1205', u'c2.fullname': u'Lois Snyder'}
-{u'c2.userid': u'1227', u'c2.fullname': u'Gregory Davis'}
-{u'c2.userid': u'1199', u'c2.fullname': u'Roscoe Picken'}
-{u'c2.userid': u'1063', u'c2.fullname': u'Carol Wells'}
-{u'c2.userid': u'1172', u'c2.fullname': u'Leonard Roby'}
-{u'c2.userid': u'1126', u'c2.fullname': u'Linda Gear'}
-{u'c2.userid': u'1153', u'c2.fullname': u'Velma Thayer'}
-{u'c2.userid': u'1193', u'c2.fullname': u'Patsy Thomas'}
-{u'c2.userid': u'1133', u'c2.fullname': u'Esther Mcmillen'}
-{u'c2.userid': u'1214', u'c2.fullname': u'Wanda Torres'}
-{u'c2.userid': u'1190', u'c2.fullname': u'Larisa Ermitanio'}
-{u'c2.userid': u'1222', u'c2.fullname': u'Donna Eisenberg'}
-{u'c2.userid': u'1130', u'c2.fullname': u'Jenny Williams'}
-{u'c2.userid': u'1070', u'c2.fullname': u'William Brennen'}
-{u'c2.userid': u'1240', u'c2.fullname': u'Carol Herring'}
-{u'c2.userid': u'1224', u'c2.fullname': u'Mac Lowder'}
-{u'c2.userid': u'1220', u'c2.fullname': u'Virginia Cain'}
-{u'c2.userid': u'1103', u'c2.fullname': u'Jaime Linscott'}
-{u'c2.userid': u'1077', u'c2.fullname': u'Dona Bradley'}
-{u'c2.userid': u'1054', u'c2.fullname': u'Sylvia Haines'}
-{u'c2.userid': u'1051', u'c2.fullname': u'James Mccabe'}
-{u'c2.userid': u'1245', u'c2.fullname': u'Elnora Haney'}
-{u'c2.userid': u'1235', u'c2.fullname': u'Shane Knobbe'}
-{u'c2.userid': u'1057', u'c2.fullname': u'Gabriel Starr'}
-{u'c2.userid': u'1043', u'c2.fullname': u'Carol James'}
-{u'c2.userid': u'1183', u'c2.fullname': u'Lewis Lapage'}
-{u'c2.userid': u'1154', u'c2.fullname': u'Eric Williams'}
-{u'c2.userid': u'1246', u'c2.fullname': u'Tricia Morales'}
-{u'c2.userid': u'1099', u'c2.fullname': u'Tina Mathison'}
-{u'c2.userid': u'1091', u'c2.fullname': u'William Vines'}
-{u'c2.userid': u'1062', u'c2.fullname': u'Susan Wolf'}
-{u'c2.userid': u'1022', u'c2.fullname': u'Jerry Robertson'}
+6. List all userids and fullnames of xi’s which satisfy Degree(1001, xi) ≤ 3
+Userid                          Fullname 
+1000                          Jesse Rostad                  
+1002                          Julia Wheeless                
+1003                          Carl Witt                     
+1004                          Anthony Story                 
+1005                          Anthony Mowery                
+1007                          Margaret Toan                 
+1008                          Susy Mcelreavy                
+1009                          Roberta Tingle                
+1010                          Larry Gabrelcik               
+1011                          Dorothy Griffin               
+1012                          Mark Haywood                  
+1013                          Hattie Jones                  
+1014                          Jay Kellett                   
+1015                          Elizabeth Andrada             
+1016                          Willie King                   
+1017                          Phillip Lied                  
+1018                          Agustina Grace                
+1020                          Elvira Leach                  
+1021                          Bruce Ray                     
+1022                          Jerry Robertson               
+1023                          Danilo Decinti                
+1024                          Brian Salinas                 
+1025                          Charles Warren                
+1026                          John Bales                    
+1027                          Mark Day                      
+1029                          Virginia Pawloski             
+1030                          John Wells                    
+1031                          Jody Stultz                   
+1032                          Karen Chase                   
+1033                          David Jacobsen                
+1035                          Ryan Castillo                 
+1036                          Ray Pressnell                 
+1037                          Dennis Michael                
+1039                          Laura Sellers                 
+1040                          Margaret Rogers               
+1041                          Donald Bice                   
+1042                          Marjorie Caicedo              
+1043                          Carol James                   
+1044                          Eric Williams                 
+1046                          George Stubbs                 
+1047                          Ruthann Ringer                
+1048                          Evan Stickler                 
+1050                          Elvin Ross                    
+1051                          James Mccabe                  
+1052                          Ida Buchanan                  
+1053                          Earl Baer                     
+1054                          Sylvia Haines                 
+1055                          Robert Corner                 
+1056                          Michele Boudreaux             
+1057                          Gabriel Starr                 
+1058                          Lorena Yates                  
+1059                          Natalie Robinson              
+1060                          William Shea                  
+1061                          Ernestine Malinoski           
+1062                          Susan Wolf                    
+1063                          Carol Wells                   
+1064                          Kieth Whitcomb                
+1065                          William Havens                
+1066                          Courtney Darrow               
+1067                          Giuseppe Willoughby           
+1068                          Tammy Sheppard                
+1069                          Brian Silva                   
+1070                          William Brennen               
+1071                          Louise Vanduyne               
+1072                          Alfonso Lieder                
+1073                          Quinton Ray                   
+1074                          Margie Sutton                 
+1075                          Linda Hightower               
+1076                          William Jones                 
+1077                          Dona Bradley                  
+1078                          Jane Smith                    
+1079                          Richard Werner                
+1081                          Eric Sandler                  
+1082                          Cory Casillas                 
+1083                          Rose Harrington               
+1084                          Kandy Epps                    
+1085                          Willie Mims                   
+1086                          Christopher Zachery           
+1087                          Stephen Bustamante            
+1088                          Phuong Dykes                  
+1089                          Fannie Mccasland              
+1090                          Margarita Fluitt              
+1091                          William Vines                 
+1092                          Jody Parker                   
+1093                          Jean Durtsche                 
+1094                          Mary Philbert                 
+1096                          Janet Barnes                  
+1097                          Grace Ousley                  
+1098                          Ronald Ibarra                 
+1099                          Tina Mathison                 
+1100                          Mark Leach                    
+1102                          Mary Morales                  
+1103                          Jaime Linscott                
+1104                          Jessica Swaim                 
+1105                          Leo Pinson                    
+1106                          Robert Butler                 
+1107                          Michael Mayoras               
+1109                          Toni Messano                  
+1110                          Sammie Anderson               
+1111                          Dolores Doan                  
+1112                          Julia Hedrick                 
+1113                          Jeremy Perry                  
+1114                          Grace Quiros                  
+1115                          Jonathan Chernoff             
+1116                          Helen Drake                   
+1117                          Marco Todd                    
+1119                          Larry Ramsey                  
+1120                          Patrick Maione                
+1121                          Eric Meier                    
+1122                          Charles Wright                
+1123                          Maureen Mount                 
+1124                          Curtis Edmond                 
+1125                          John Walter                   
+1126                          Linda Gear                    
+1127                          Sharon Hoover                 
+1128                          Cynthia Vincent               
+1129                          Nellie Banister               
+1130                          Jenny Williams                
+1131                          Audrey Depasquale             
+1132                          Barbara Moore                 
+1133                          Esther Mcmillen               
+1134                          Myrtle Ebert                  
+1136                          Hugh Allen                    
+1137                          Maude Medley                  
+1139                          Molly Alexander               
+1140                          John Hurst                    
+1141                          Calvin Raines                 
+1142                          Mary Jones                    
+1144                          Steven Turner                 
+1145                          Donna Dover                   
+1146                          Andrea Nasser                 
+1147                          William Adams                 
+1148                          Howard Lambert                
+1149                          Robert Ray                    
+1150                          Barbara Dominguez             
+1151                          Duane Hammond                 
+1152                          Daniel Zajac                  
+1153                          Velma Thayer                  
+1154                          Eric Williams                 
+1155                          Brian Zeringue                
+1156                          Matthew Brockman              
+1157                          Joshua Britcher               
+1158                          Elwood Seidell                
+1159                          Helen Ratzlaff                
+1161                          Lorenzo Peterson              
+1162                          Keith Blackburn               
+1163                          Paul Moss                     
+1164                          Katherine Troilo              
+1165                          Pablo Ross                    
+1167                          Harvey Fulton                 
+1168                          Charles Kee                   
+1170                          Lawrence Puckett              
+1171                          Whitney Seibert               
+1172                          Leonard Roby                  
+1173                          Vernell Bailey                
+1176                          Shelia Lunsford               
+1177                          Jacob Cunningham              
+1178                          Gary Bishop                   
+1179                          Mary Wood                     
+1180                          Mae Rios                      
+1181                          Rebecca Vogt                  
+1182                          Beatrice Davis                
+1183                          Lewis Lapage                  
+1184                          Josephina Miller              
+1186                          Katherine Rue                 
+1188                          Jeffery Boling                
+1189                          Thelma Looney                 
+1190                          Larisa Ermitanio              
+1191                          Derrick Williams              
+1192                          Maryann Lange                 
+1193                          Patsy Thomas                  
+1194                          Lavone Toledo                 
+1195                          Carol Perez                   
+1196                          Joe Waite                     
+1198                          Catherine Bass                
+1199                          Roscoe Picken                 
+1202                          Carma Polizio                 
+1203                          Carol Machesky                
+1204                          Shawn Tucker                  
+1205                          Lois Snyder                   
+1206                          Jerome Heimann                
+1207                          Patrick Nickl                 
+1208                          Jerrold Burlin                
+1209                          Todd Beck                     
+1210                          Kathryn Mcintosh              
+1211                          Richard Cunningham            
+1212                          Wanda Jones                   
+1214                          Wanda Torres                  
+1215                          Charles Sherman               
+1218                          Kathleen Light                
+1219                          Victoria Beard                
+1220                          Virginia Cain                 
+1221                          Kenneth Robinson              
+1222                          Donna Eisenberg               
+1223                          Mary Reichman                 
+1224                          Mac Lowder                    
+1225                          Darrell Martell               
+1226                          Robert Pizzo                  
+1227                          Gregory Davis                 
+1228                          Cora Manuel                   
+1229                          Charles Bean                  
+1230                          Samuel Miya                   
+1231                          Ramona Bell                   
+1232                          Sallie Ely                    
+1233                          Michael Lurry                 
+1234                          Morgan Jones                  
+1235                          Shane Knobbe                  
+1236                          Bruce Tullio                  
+1237                          Antonio Hernandez             
+1238                          Albert Simpson                
+1240                          Carol Herring                 
+1241                          David Mcghee                  
+1242                          Jaime Youree                  
+1245                          Elnora Haney                  
+1246                          Tricia Morales                
+1248                          Ronald Simpson                
+1249                          Emanuel Duenas                
 
 
