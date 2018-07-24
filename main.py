@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
 import dataset
 import argparse
 from py2neo import authenticate, Graph,Node,Relationship,NodeSelector
 from sets import Set
 import datetime
 import time
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 # Command line argument parser
 def arg_parser():
@@ -172,20 +172,19 @@ def queries_file(queries_list,questions_list):
     questions_list.append("4. Which collectors collected all movies in which ’Edward Norton’ acts?")
     questions_list.append("5. List 10 collectors ( userid and fullname ) who collect ’The Shawshank Redemption’.")
     questions_list.append("6. List all userids and fullnames of xi’s which satisfy Degree(1001, xi) ≤ 3")
-    questions_list.append("7. List all userids and fullnames of xi’s which satisfy Degree(1001, xi) ≤ 3")
-    file = open('work_file', 'w')
+    file_results = open('resultsOfNeo4j.txt', 'w')
     count=0
     for query in queries_list:
-        file.write(questions_list[count])
-        file.write("\n")
+        file_results.write(questions_list[count])
+        file_results.write("\n")
         if (count!=2):
-            file.write("Userid                          Fullname \n")
+            file_results.write("Userid                          Fullname \n")
         for answers in query:
-            for key, item in answers.items():
-                file.write('{:<30}'.format(str(item)))
-            file.write("\n")
+            for _key, item in answers.items():
+                file_results.write('{:<30}'.format(str(item)))
+            file_results.write("\n")
         count+=1
-        file.write("\n\n")
+        file_results.write("\n\n")
 
 def queries(data,graph):
     # Put queries' answers into queries_list
