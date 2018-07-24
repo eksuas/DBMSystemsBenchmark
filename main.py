@@ -221,9 +221,10 @@ def queries(data,graph):
 
 def main():
     #Learn time difference for relation func
-    now = datetime.datetime.now()
     args=arg_parser()
     data=read_files(args)
+    
+    now = datetime.datetime.now()
     neo4j(args.user,args.password,args.hostname,data)
     end = datetime.datetime.now()
     print (end-now)
