@@ -2,10 +2,12 @@
 import dataset
 import argparse
 from py2neo import authenticate, Graph,Node,Relationship,NodeSelector
-import sys
 from sets import Set
 import datetime
 import time
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 # Command line argument parser
 def arg_parser():
@@ -61,8 +63,8 @@ def read_files(args):
         data.directors.add(movie.director)
 
     # Assign id to actors and directors
-    data.actors=Set([dataset.Actor(ID+2000, name) for ID, name in enumerate(data.actors)])
-    data.directors=Set([dataset.Director(ID+3000, name) for ID, name in enumerate(data.directors)])
+    data.actors=Set([dataset.Actor(ID+2001, name) for ID, name in enumerate(data.actors)])
+    data.directors=Set([dataset.Director(ID+3001, name) for ID, name in enumerate(data.directors)])
 
     # Read lines in collectors file
     collectors_lines=collectors_file.readlines()
@@ -97,6 +99,8 @@ def neo4j(user,password,hostname,data):
     except Exception:
         print ("Unable to reach server.")
         sys.exit()
+
+    graph.data("MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r")
 
     #start graph operations
     start=graph.begin()
@@ -133,9 +137,6 @@ def neo4j(user,password,hostname,data):
 
 # Create relationship between nodes
 def relation(data,graph):
-    #Learn time difference for relation func
-    now = datetime.datetime.now()
-
     #Related querires
     acted_in = """MATCH (m:Movies),(a:Actors)
                 WHERE m.title ={title} AND a.fullname ={actor_name}
@@ -161,40 +162,70 @@ def relation(data,graph):
     for collector1,collector2 in data.followings:
         graph.run(follows, id=collector1,id2=collector2)
 
-    end = datetime.datetime.now()
-    print (end-now)
     return graph,data
 
+#Write queries to a file
+def queries_file(queries_list,questions_list):
+    questions_list.append("1. List all actors ( userid and fullname ) who are also directors")
+    questions_list.append("2. List all actors ( userid and fullname ) who acted in 5 or more movies.")
+    questions_list.append("3. How many actors have acted in same movies with ’Edward Norton’?")
+    questions_list.append("4. Which collectors collected all movies in which ’Edward Norton’ acts?")
+    questions_list.append("5. List 10 collectors ( userid and fullname ) who collect ’The Shawshank Redemption’.")
+    questions_list.append("6. List all userids and fullnames of xi’s which satisfy Degree(1001, xi) ≤ 3")
+    file_results = open('resultsOfNeo4j.txt', 'w')
+    count=0
+    for query in queries_list:
+        file_results.write(questions_list[count])
+        file_results.write("\n")
+        if (count!=2):
+            file_results.write("Userid                          Fullname \n")
+        for answers in query:
+            for _key, item in answers.items():
+                file_results.write('{:<30}'.format(str(item)))
+            file_results.write("\n")
+        count+=1
+        file_results.write("\n\n")
+
 def queries(data,graph):
-    print graph.run("""MATCH (a:Actors),(d:Directors)
-                  WHERE a.fullname = d.fullname RETURN a""").data()
-
-    print graph.run("""MATCH (a:Actors)-[:ACTED_IN]->(m:Movies)
-                   WITH a,count(m) as rels
-                   WHERE rels >=5
-                   RETURN a""").data()
-
-    print graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
+    # Put queries' answers into queries_list
+    ########### 1. Query ###############
+    data.queries_list.append(graph.run("""MATCH (a:Actors),(d:Directors)
+                WITH a,d
+                WHERE a.fullname = d.fullname
+                RETURN DISTINCT a.userid,a.fullname ORDER BY a.userid""").data())
+    ########### 2. Query ###############
+    data.queries_list.append(graph.run("""MATCH (a:Actors)-[:ACTED_IN]->(m:Movies)
+                WITH a,count(m) as rels
+                WHERE rels >=5
+                RETURN DISTINCT a.userid,a.fullname ORDER BY a.userid""").data())
+    ########### 3. Query ###############
+    data.queries_list.append(graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
                 WITH m
                 MATCH (m)<-[:ACTED_IN]-(c:Actors)
-                RETURN count(c)-1""").data()
-
-    print graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
+                RETURN count(distinct c)-1""").data())
+    ########### 4. Query ###############
+    data.queries_list.append(graph.run("""MATCH (a:Actors {fullname: "Edward Norton"})-[:ACTED_IN]->(m:Movies)
                 WITH m
                 MATCH (m)<-[:COLLECTS]-(c:Collectors)
-                RETURN c""").data()
+                WITH c
+                RETURN DISTINCT c.userid,c.fullname ORDER BY c.userid""").data())
+    ########### 5. Query ###############
+    data.queries_list.append(graph.run("""MATCH (c:Collectors)-[:COLLECTS]->(m:Movies {title: "The Shawshank Redemption"})
+                RETURN c.userid,c.fullname ORDER BY c.userid LIMIT 10""").data())
+    ########### 6. Query ###############
+    data.queries_list.append(graph.run("""MATCH (c1:Collectors{userid:'1001'})-[:FOLLOWS*1..3]->(c2:Collectors)
+                RETURN DISTINCT c2.userid,c2.fullname ORDER BY c2.userid""").data())
 
-    print graph.run("""MATCH (c:Collectors)-[:COLLECTS]->(m:Movies {title: "The Shawshank Redemption"})
-                RETURN c LIMIT 10""").data()
+    queries_file(data.queries_list,data.questions_list)
 
-    print graph.run("""MATCH (c1:Collectors { userid: '1001' })-[:FOLLOWS*1..3]-(c2:Collectors)
-                RETURN DISTINCT c2.fullname,c2.userid""").data()
-
-    
 def main():
     args=arg_parser()
     data=read_files(args)
+    #Learn time difference for neo4j operations
+    now = datetime.datetime.now()
     neo4j(args.user,args.password,args.hostname,data)
+    end = datetime.datetime.now()
+    print (end-now)
 
 if __name__ == '__main__':
     main()

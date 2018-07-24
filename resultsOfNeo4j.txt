@@ -1,0 +1,111 @@
+1. List all actors ( userid and fullname ) who are also directors
+Userid                          Fullname
+Richard Attenborough          2039
+John Huston                   2063
+Orson Welles                  2132
+Clint Eastwood                2185
+Charles Laughton              2311
+Woody Allen                   2385
+Terry Gilliam                 2472
+Aamir Khan                    2521
+Roberto Benigni               2712
+Charles Chaplin               2746
+Steve McQueen                 2763
+
+
+2. List all actors ( userid and fullname ) who acted in 5 or more movies.
+Userid                          Fullname
+Tom Hanks                     2179
+Clint Eastwood                2185                          
+Leonardo DiCaprio             2661
+Robert De Niro                2754
+
+
+3. How many actors have acted in same movies with ’Edward Norton’?
+6
+
+
+4. Which collectors collected all movies in which ’Edward Norton’ acts?
+Userid                          Fullname
+1001                          Christopher Johnson
+1008                          Susy Mcelreavy
+1009                          Roberta Tingle
+1027                          Mark Day
+1097                          Grace Ousley
+1123                          Maureen Mount
+1178                          Gary Bishop
+
+
+5. List 10 collectors ( userid and fullname ) who collect ’The Shawshank Redemption’.
+Userid                          Fullname
+1049                          Angela Nakano
+1051                          James Mccabe
+1072                          Alfonso Lieder
+1075                          Linda Hightower
+1102                          Mary Morales
+1153                          Velma Thayer
+1176                          Shelia Lunsford
+1189                          Thelma Looney
+1201                          Cornelia Harris
+1210                          Kathryn Mcintosh
+
+
+6. List all userids and fullnames of xi’s which satisfy Degree(1001, xi) ≤ 3
+Userid                          Fullname
+1003                          Carl Witt
+1017                          Phillip Lied
+1024                          Brian Salinas
+1025                          Charles Warren
+1029                          Virginia Pawloski
+1031                          Jody Stultz
+1033                          David Jacobsen
+1036                          Ray Pressnell
+1040                          Margaret Rogers
+1042                          Marjorie Caicedo
+1043                          Carol James
+1054                          Sylvia Haines
+1056                          Michele Boudreaux
+1059                          Natalie Robinson
+1061                          Ernestine Malinoski
+1070                          William Brennen
+1073                          Quinton Ray
+1078                          Jane Smith
+1085                          Willie Mims
+1088                          Phuong Dykes
+1089                          Fannie Mccasland
+1091                          William Vines
+1094                          Mary Philbert
+1098                          Ronald Ibarra
+1100                          Mark Leach
+1104                          Jessica Swaim
+1110                          Sammie Anderson
+1112                          Julia Hedrick
+1115                          Jonathan Chernoff
+1116                          Helen Drake
+1119                          Larry Ramsey
+1124                          Curtis Edmond
+1126                          Linda Gear
+1136                          Hugh Allen
+1141                          Calvin Raines
+1144                          Steven Turner
+1147                          William Adams
+1149                          Robert Ray
+1151                          Duane Hammond
+1155                          Brian Zeringue
+1156                          Matthew Brockman
+1157                          Joshua Britcher
+1173                          Vernell Bailey
+1179                          Mary Wood
+1183                          Lewis Lapage
+1184                          Josephina Miller
+1186                          Katherine Rue
+1188                          Jeffery Boling
+1189                          Thelma Looney
+1193                          Patsy Thomas
+1203                          Carol Machesky
+1209                          Todd Beck
+1221                          Kenneth Robinson
+1222                          Donna Eisenberg
+1228                          Cora Manuel
+1235                          Shane Knobbe
+1240                          Carol Herring
