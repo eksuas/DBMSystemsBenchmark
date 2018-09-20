@@ -1,0 +1,116 @@
+1. List all actors ( userid and fullname ) who are also directors.
+Fullname                     Userid 
+Richard Attenborough          2039                          
+John Huston                   2063                          
+Orson Welles                  2132                          
+Clint Eastwood                2185                          
+Charles Laughton              2311                          
+Woody Allen                   2385                          
+Terry Gilliam                 2472                          
+Aamir Khan                    2521                          
+Roberto Benigni               2712                          
+Charles Chaplin               2746                          
+Steve McQueen                 2763                          
+
+
+
+2. List all actors ( userid and fullname ) who acted in 5 or more movies.
+Fullname                     Userid 
+Tom Hanks                     2179                          
+Clint Eastwood                2185                          
+Leonardo DiCaprio             2661                          
+Robert De Niro                2754                          
+
+
+
+3. How many actors have acted in same movies with ’Edward Norton’?
+6                             
+
+
+
+4. Which collectors collected all movies in which ’Edward Norton’ acts?
+Userid                          Fullname 
+1001                          Christopher Johnson           
+1008                          Susy Mcelreavy                
+1009                          Roberta Tingle                
+1027                          Mark Day                      
+1097                          Grace Ousley                  
+1123                          Maureen Mount                 
+1178                          Gary Bishop                   
+
+
+
+5. List 10 collectors ( userid and fullname ) who collect ’The Shawshank Redemption’.
+Fullname                     Userid 
+Angela Nakano                 1049                          
+James Mccabe                  1051                          
+Alfonso Lieder                1072                          
+Linda Hightower               1075                          
+Mary Morales                  1102                          
+Velma Thayer                  1153                          
+Shelia Lunsford               1176                          
+Thelma Looney                 1189                          
+Cornelia Harris               1201                          
+Kathryn Mcintosh              1210                          
+
+
+
+6. List all userids and fullnames of xi’s which satisfy Degree(1001, xi) ≤ 3
+Fullname
+Joshua Britcher               
+Shane Knobbe                  
+Donna Eisenberg               
+William Brennen               
+Vernell Bailey                
+William Adams                 
+Carol Machesky                
+Linda Gear                    
+Mary Philbert                 
+Steven Turner                 
+Robert Ray                    
+Julia Hedrick                 
+Brian Zeringue                
+William Vines                 
+Phuong Dykes                  
+Hugh Allen                    
+Willie Mims                   
+Duane Hammond                 
+Charles Warren                
+Jeffery Boling                
+Ray Pressnell                 
+Ernestine Malinoski           
+Jonathan Chernoff             
+Thelma Looney                 
+Larry Ramsey                  
+Quinton Ray                   
+Mark Leach                    
+Cora Manuel                   
+Mary Wood                     
+Fannie Mccasland              
+Ronald Ibarra                 
+Kenneth Robinson              
+Helen Drake                   
+David Jacobsen                
+Sammie Anderson               
+Virginia Pawloski             
+Marjorie Caicedo              
+Margaret Rogers               
+Natalie Robinson              
+Jody Stultz                   
+Sylvia Haines                 
+Patsy Thomas                  
+Brian Salinas                 
+Matthew Brockman              
+Phillip Lied                  
+Carol James                   
+Carol Herring                 
+Josephina Miller              
+Jane Smith                    
+Calvin Raines                 
+Michele Boudreaux             
+Jessica Swaim                 
+Curtis Edmond                 
+Lewis Lapage                  
+Todd Beck                     
+Katherine Rue                 
+Carl Witt                     

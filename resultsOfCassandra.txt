@@ -1,0 +1,112 @@
+1. List all actors ( userid and fullname ) who are also directors
+Fullname                          Userid 
+Woody Allen                         2385
+Orson Welles                        2132
+Terry Gilliam                       2472
+Charles Chaplin                     2746
+Charles Laughton                    2311
+Steve McQueen                       2763
+John Huston                         2063
+Richard Attenborough                2039
+Roberto Benigni                     2712
+Aamir Khan                          2521
+Clint Eastwood                      2185
+
+
+2. List all actors ( userid and fullname ) who acted in 5 or more movies.
+Fullname                          Userid 
+Tom Hanks                           2179
+Robert De Niro                      2754
+Leonardo DiCaprio                   2661
+Clint Eastwood                      2185
+
+
+3. How many actors have acted in same movies with ’Edward Norton’?
+Row(system_count_fullname=6)
+
+4. Which collectors collected all movies in which ’Edward Norton’ acts?
+Fullname                          Userid 
+Maureen Mount                       1123
+Grace Ousley                        1097
+Roberta Tingle                      1009
+Gary Bishop                         1178
+Mark Day                            1027
+Christopher Johnson                 1001
+Susy Mcelreavy                      1008
+
+
+5. List 10 collectors ( userid and fullname ) who collect ’The Shawshank Redemption’.
+Fullname                          Userid 
+Velma Thayer                        1153
+Thelma Looney                       1189
+Alfonso Lieder                      1072
+Angela Nakano                       1049
+Linda Hightower                     1075
+James Mccabe                        1051
+Kathryn Mcintosh                    1210
+Shelia Lunsford                     1176
+Cornelia Harris                     1201
+Mary Morales                        1102
+
+
+6. List all userids and fullnames of xi’s which satisfy Degree(1001, xi) ≤ 3
+Fullname                          Userid 
+Julia Hedrick                       1112
+Hugh Allen                          1136
+Sylvia Haines                       1054
+Jeffery Boling                      1188
+Natalie Robinson                    1059
+Brian Salinas                       1024
+Jonathan Chernoff                   1115
+Linda Gear                          1126
+Katherine Rue                       1186
+Phuong Dykes                        1088
+Steven Turner                       1144
+Phillip Lied                        1017
+Ernestine Malinoski                 1061
+Josephina Miller                    1184
+Jane Smith                          1078
+Matthew Brockman                    1156
+Carol Machesky                      1203
+Shane Knobbe                        1235
+Ray Pressnell                       1036
+William Adams                       1147
+Sammie Anderson                     1110
+Carol Herring                       1240
+Lewis Lapage                        1183
+Brian Zeringue                      1155
+Cora Manuel                         1228
+Vernell Bailey                      1173
+Virginia Pawloski                   1029
+Jody Stultz                         1031
+Joshua Britcher                     1157
+Michele Boudreaux                   1056
+Helen Drake                         1116
+William Brennen                     1070
+Larry Ramsey                        1119
+Robert Ray                          1149
+Marjorie Caicedo                    1042
+Carol James                         1043
+Ronald Ibarra                       1098
+Jessica Swaim                       1104
+Duane Hammond                       1151
+Curtis Edmond                       1124
+Kenneth Robinson                    1221
+Mark Leach                          1100
+Carl Witt                           1003
+Quinton Ray                         1073
+Thelma Looney                       1189
+Margaret Rogers                     1040
+Todd Beck                           1209
+Fannie Mccasland                    1089
+Donna Eisenberg                     1222
+William Vines                       1091
+David Jacobsen                      1033
+Willie Mims                         1085
+Mary Philbert                       1094
+Mary Wood                           1179
+Calvin Raines                       1141
+Patsy Thomas                        1193
+Charles Warren                      1025
+
+
